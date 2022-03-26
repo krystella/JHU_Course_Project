@@ -1,4 +1,22 @@
-# Downloading and unzipping data ------------------------------------------
+#        PREFACE --------------------------------------------------------------------------------------
+
+#   For information on the aim of this script, the data sets used and the data manipulation sets, 
+#   please see the readme.md and codebook.md files attached to this repository
+#   
+#   This script consists of 11 code sections:
+#    1. Downloading and unzipping the data
+#    2. Reading files into R
+#    3. Becoming familiar with the data
+#    4. Descriptive variable names for data sets
+#    5. Collating the test data
+#    6. Collating the train data
+#    7. Merging the test and train data
+#    8. Extracting mean and standard deviation variables
+#    9. Descriptive 'Activity' names
+#   10. Tidying variable names
+#   11. Tidy data set
+
+#     1. DOWNLOADING AND UNZIPPING THE DATA -----------------------------------------------------------------
 
 fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 
@@ -9,7 +27,7 @@ download.file(fileUrl, destfile = "./data/UCIHAR.zip")
 unzip(zipfile = "./data/UCIHAR.zip", exdir = "./data")
 
 
-# Reading files into R -----------------------------------------------------------
+#     2. READING FILES INTO R ---------------------------------------------------------------------------
 
 features <- read.table("./data/UCI HAR Dataset/features.txt")
 
@@ -26,7 +44,7 @@ x_test <- read.table("./data/UCI HAR Dataset/test/x_test.txt")
 y_test <- read.table("./data/UCI HAR Dataset/test/y_test.txt")
 
 
-# Becoming familiar with the data --------------------------------------------------
+#     3. BECOMING FAMILIAR WITH THE DATA --------------------------------------------------------------
 
 # Features Data
 
@@ -40,7 +58,9 @@ names(features)
 
 unique(features$V1)
 
+------------------------------------------------------------------------------------------------
 # Test_Data 
+
 dim(subject_test)
 
 dim(x_test)
@@ -63,7 +83,6 @@ unique(subject_test)
 
 unique(y_test)
 
-
 names(x_test)
 
 names(y_test)
@@ -73,8 +92,9 @@ names(y_test)
 # x_test : Data (2947 x 561)
 # y_test : Integer vector with integers (1-6) representing the 6 different activities measured
 
-
+-----------------------------------------------------------------------------------------
 # Train Data
+
 str(subject_train)
 
 str(x_train)
@@ -96,7 +116,7 @@ names(y_train)
 # y_train : Integer vector with numbers (1-6) representing the different activities measured
 
 
-# Descriptive variable names for data set ---------------------------------------
+#     4. DESCRIPTIVE VARIABLE NAMES FOR THE DATA SET -----------------------------------------------------
 
 # Appropriately label the data set with descriptive names
 
@@ -128,7 +148,7 @@ subject_train <- rename(subject_train, ID = V1)
 y_train <- rename(y_train, Activity = V1)
 
 
-# Collating Test data ---------------------------------------------------
+#     5. COLLATING TEST DATA ----------------------------------------------------------------------------------
 
 # Combine subject_test, y_test and x_test to collate Test data
 
@@ -137,7 +157,7 @@ TestData <- cbind(subject_test, y_test, x_test)
 TestData[1:5, 1:5] # quick check
 
 
-# Collating Train data --------------------------------------------------
+#     6. COLLATING TRAIN DATA ---------------------------------------------------------------------------------
 
 # Combine subject_train, y_train, x_train to collate Train data
 
@@ -146,13 +166,14 @@ TrainData <- cbind(subject_train, y_train, x_train)
 TrainData[1:5, 1:5] # quick check
 
 
-# Merging Test and Train data sets ------------------------------------------
+#     7. MERGING TEST AND TRAIN DATA ---------------------------------------------------------------------
 
 # Since the TestData and TrainData combined produces the full data set of all feature measurements taken per activity, the combined data set is called 'Features Data'
 
 # Combine TestData and TrainData using rbind
 
 FeaturesData <- rbind(TestData, TrainData)
+
 
 # Quick check to ensure the data frames were combined correctly
 
@@ -167,7 +188,7 @@ unique(FeaturesData$ID)
 unique(FeaturesData$Activity)
 
 
-# Extracting Mean and Std variables -------------------------------------------------
+#     8. EXTRACTING MEAN AND STD VARIABLES --------------------------------------------------------------------
 
 # Required to extract only the measurements on the mean and standard deviation for each measurement, assumed to be mean() and std() measurements
 
@@ -187,7 +208,7 @@ names(FeaturesMS)
 FeaturesMS[1:5, 1:5]
 
 
-# Descriptive 'Activity' names --------------------------------------------
+#     9. DESCRIPTIVE 'ACTIVITY' NAMES ------------------------------------------------------------------
 
 # Data provided in activity_labels.txt used to describe the activities
 
@@ -201,6 +222,7 @@ class(FeaturesMS$Activity)
 
 FeaturesMS$Activity <- as.character(c("1" = "Walking", "2" = "Walking_Upstairs", "3" = "Walking_Downstairs", "4"= "Sitting", "5" = "Standing", "6" = "Laying")[FeaturesMS$Activity])
 
+
 # Quick check
 
 FeaturesMS[1:5, 1:5]
@@ -208,10 +230,10 @@ FeaturesMS[1:5, 1:5]
 unique(FeaturesMS$Activity)
 
 
-# Tidying variable names ------------------------------------------------
+#     10. TIDYING VARIABLE NAMES -------------------------------------------------------------------
 
 # Descriptive variable names were used to label columns in a previous section 'Descriptive variable names for the data set'
-# 
+
 # This section uses the guide set out in the lecture 'Editing Text Variables' for tidying those variable names
 
 # Current variable names:
@@ -240,7 +262,7 @@ names(FeaturesMS)
 # 4. without underscores, dots or whitespaces 
 
 
-# Tidy data set--------------------------------------------------
+#     11. TIDY DATA SET -------------------------------------------------------------------------
 
 # Create an independent tidy data set with the average of each variable for each activity and each subject
 
