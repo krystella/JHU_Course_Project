@@ -9,11 +9,11 @@ Project: Getting and Cleaning Data Course Project
 ##
 
 ### **Table of Contents**
-1. Introduction
-2. Project Description and Instructions
-3. Repository Contents
-4. Data Analysis Summary
-5. References
+1. [Introduction](#Introduction)
+2. [Project Description and Instructions](#Project-Description-and-Instructions)
+3. [Repository Contents](#Repository-Contents)
+4. [Data Analysis Summary](#Data-Analysis-Summary)
+5. [References](#References)
 
 ##
 
