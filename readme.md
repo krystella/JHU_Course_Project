@@ -56,13 +56,13 @@ You should create one R script called run_analysis.R that does the following:
 
 This repository contains the following files:
 
-  * readme.md
+  * [readme.md](readme.md)
 
-  * run_analysis.R
+  * [run_analysis.R](run_analysis.R)
   
-  * codebook.md
+  * [codebook.md](codebook.md)
 
-  * TidyData.txt
+  * [TidyData.txt](TidyData.txt)
 
 The R script 'run_analysis.R' contains the code which performs the analysis. 
 
