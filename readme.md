@@ -60,7 +60,7 @@ This repository contains the following files:
 
   * [run_analysis.R](run_analysis.R)
   
-  * [codebook.md](codebook.md)
+  * [codebook.md](Codebook.md)
 
   * [TidyData.txt](TidyData.txt)
 
