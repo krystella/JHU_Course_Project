@@ -17,3 +17,4 @@ I am currently working towards completion of the fourth course: _Exploratory Dat
 
 ### **Table of Contents**
 1. [Human Activity Recognition Using Smartphones](JHU_Getting_and_Cleaning_Data/readme.md)
+    # Getting and Cleaning Data
