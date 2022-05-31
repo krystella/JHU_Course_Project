@@ -1,0 +1,154 @@
+---
+Title: Exploratory Graphs
+Instructor: Roger D. Peng, *JHU via Coursera*
+author: "Krystella Rattan"
+date: "5/30/2022"
+output:
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Exploratory Graphs are used:
+
+* To understand data properties
+* To find patterns in data
+* To suggest modeling strategies
+* To "debug" analyses
+
+Characteristics of exploratory graphs:
+
+* They are made quickly
+* A large number are made
+* The goal is for personal understanding
+* Axes/legends are generally cleaned up later
+* Colour/size are primarily used for information
+
+>> Exploratory graphs are meant to familiarise the analyst with the data
+
+## **Example: Ambient Air Pollution in the US**
+
+**Data:** Annual average PM 2.5 averaged over the period 2008 through 2010
+
+**Data Source:** https://github.com/jtleek/modules/blob/master/04_ExploratoryAnalysis/exploratoryGraphs/data/avgpm25.csv
+
+**Context:**
+The US Environmental Protection Agency (EPA) sets the national ambient air quality standards for outdoor air pollution
+
+For fine particle pollution (PM2.5), the "annual mean, averaged over 3 years" cannot exceed 12 $\mu$g / $m^{3}$
+
+**Question:**
+Are there any counties in the US that exceed that national standard for fine particle pollution?
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+
+pollution <- read.csv("E:/Work/Data Science/R/4 Exploratory Data Analysis/avgpm dataset/avgpm25.csv", colClasses = c("numeric", "character", "factor", "numeric", "numeric"))
+
+```
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+
+head(pollution)
+
+```
+
+
+*Do any counties exceed the standard of 12 $\mu$g / $m^{3}$ ?*
+
+
+### One-Dimensional Summaries of Data
+
+**Five-number summary**
+```{r}
+summary(pollution$pm25)
+
+```
+
+---
+
+**Boxplots**
+```{r}
+boxplot(pollution$pm25, col = "blue")
+
+```
+
+---
+
+**Histograms**
+```{r}
+hist(pollution$pm25, col = "green")
+
+```
+```{r}
+hist(pollution$pm25, col = "green")
+rug(pollution$pm25)
+
+```
+
+
+```{r}
+hist(pollution$pm25, col = "green", breaks = 100)
+rug(pollution$pm25)
+
+```
+
+
+---
+
+**Overlaying features**
+```{r}
+boxplot(pollution$pm25, col = "blue")
+abline(h = 12)
+
+```
+
+```{r}
+hist(pollution$pm25, col = "green")
+abline(v = 12, lwd = 2)
+abline(v = median(pollution$pm25), col = "magenta", lwd =4)
+
+```
+
+
+---
+
+**Barplot**
+
+```{r}
+barplot(table(pollution$region), col = "wheat", main = "Number of Counties in Each Region")
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
